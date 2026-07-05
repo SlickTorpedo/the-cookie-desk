@@ -1,4 +1,4 @@
-# Gem Calculator — The Cookie Desk
+# The Cookie Desk
 
 **Live at [thecookiedesk.com](https://thecookiedesk.com)**
 
