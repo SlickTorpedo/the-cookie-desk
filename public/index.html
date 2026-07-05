@@ -188,28 +188,28 @@
   .checkline.on { color: var(--ink); border-color: var(--gem); }
 
   /* stations */
-  .stations { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 40px; }
+  .stations { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 40px; align-items: stretch; }
   .station {
     border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
     padding: 22px; display: flex; flex-direction: column; gap: 18px;
-    position: relative;
+    position: relative; overflow: hidden;
   }
-  .station::before { content: ""; position: absolute; top: 0; left: 12px; right: 12px; height: 3px; border-radius: 0 0 3px 3px; }
+  .station::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .station.tone-gold::before { background: var(--gold); }
   .station.tone-gem::before { background: var(--gem); }
   .station.tone-mid::before { background: var(--mid); }
   .station-head h3 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
   .station-head p { font-size: 12px; color: var(--ink-dim); margin: 0; line-height: 1.4; }
+  .station-head { position: relative; }
   .station-head h3 { display: flex; align-items: center; gap: 7px; }
   .warn {
-    position: relative; display: inline-flex; align-items: center;
+    display: inline-flex; align-items: center;
     color: var(--gold); cursor: help; outline: none;
   }
   .warn svg { width: 15px; height: 15px; opacity: 0.75; transition: opacity 0.15s; }
   .warn:hover svg, .warn:focus svg { opacity: 1; }
   .warn-tip {
-    position: absolute; top: calc(100% + 9px); right: 0; left: auto;
-    width: 235px; max-width: 70vw;
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
     background: var(--panel-2); border: 1px solid var(--line-2);
     border-radius: 8px; padding: 9px 11px;
     font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 400;
@@ -220,10 +220,11 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
   .warn-tip::before {
-    content: ""; position: absolute; bottom: 100%; right: 10px; left: auto;
+    content: ""; position: absolute; bottom: 100%; left: 14px;
     border: 6px solid transparent; border-bottom-color: var(--line-2);
   }
-  .warn:hover .warn-tip, .warn:focus .warn-tip { opacity: 1; visibility: visible; transform: translateY(0); }
+  .station-head:hover .warn-tip,
+  .station-head:focus-within .warn-tip { opacity: 1; visibility: visible; transform: translateY(0); }
   .field {
     display: flex; align-items: center; border: 1px solid var(--line-2);
     border-radius: 9px; background: var(--bg); padding: 0 14px; transition: 0.15s;
@@ -341,9 +342,9 @@
         <h3>Coins → USD
           <span class="warn" tabindex="0" aria-label="Just for fun — not for real-world trading">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span class="warn-tip">Just a fun theoretical number. Buying or selling coins for real money is against Hypixel's rules and can get you banned — this isn't for that.</span>
           </span>
         </h3>
+        <span class="warn-tip">Just a fun theoretical number. Buying or selling coins for real money is against Hypixel's rules and can get you banned — this isn't for that.</span>
         <p>Roughly what a coin balance works out to, going by gem-store prices.</p>
       </div>
       <div class="field"><input id="coinsIn" inputmode="decimal" placeholder="e.g. 500m or 1.2b" /><span class="affix suf">coins</span></div>
